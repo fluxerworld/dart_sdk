@@ -135,6 +135,10 @@ MessageResponseSchema _$MessageResponseSchemaFromJson(
                 v as Map<String, dynamic>,
               ),
       ),
+      encryptedPayload: $checkedConvert(
+        'encrypted_payload',
+        (v) => v as Map<String, dynamic>?,
+      ),
     );
     return val;
   },
@@ -149,6 +153,7 @@ MessageResponseSchema _$MessageResponseSchemaFromJson(
     'messageReference': 'message_reference',
     'messageSnapshots': 'message_snapshots',
     'referencedMessage': 'referenced_message',
+    'encryptedPayload': 'encrypted_payload',
   },
 );
 
@@ -181,4 +186,5 @@ Map<String, dynamic> _$MessageResponseSchemaToJson(
   'nonce': ?instance.nonce,
   'call': ?instance.call,
   'referenced_message': ?instance.referencedMessage,
+  'encrypted_payload': ?instance.encryptedPayload,
 };

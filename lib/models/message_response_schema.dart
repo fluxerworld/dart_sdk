@@ -49,6 +49,7 @@ class MessageResponseSchema {
     this.nonce,
     this.call,
     this.referencedMessage,
+    this.encryptedPayload,
   });
 
   factory MessageResponseSchema.fromJson(Map<String, Object?> json) =>
@@ -144,6 +145,11 @@ class MessageResponseSchema {
   /// The message that this message is replying to or forwarding
   @JsonKey(includeIfNull: false, name: 'referenced_message')
   final MessageResponseSchemaReferencedMessage? referencedMessage;
+
+  /// End-to-end encrypted payload (Olm/Megolm envelope) for encrypted DM and
+  /// group-DM messages. Present only when the ENCRYPTED message flag is set.
+  @JsonKey(includeIfNull: false, name: 'encrypted_payload')
+  final Map<String, dynamic>? encryptedPayload;
 
   Map<String, Object?> toJson() => _$MessageResponseSchemaToJson(this);
 }
