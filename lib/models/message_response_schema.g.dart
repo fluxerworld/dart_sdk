@@ -31,16 +31,21 @@ MessageResponseSchema _$MessageResponseSchemaFromJson(
       ),
       pinned: $checkedConvert('pinned', (v) => v as bool),
       mentionEveryone: $checkedConvert('mention_everyone', (v) => v as bool),
-      tts: $checkedConvert('tts', (v) => v as bool),
+      tts: $checkedConvert('tts', (v) => v as bool? ?? false),
       mentions: $checkedConvert(
         'mentions',
-        (v) => (v as List<dynamic>)
-            .map((e) => UserPartialResponse.fromJson(e as Map<String, dynamic>))
-            .toList(),
+        (v) =>
+            (v as List<dynamic>?)
+                ?.map(
+                  (e) => UserPartialResponse.fromJson(e as Map<String, dynamic>),
+                )
+                .toList() ??
+            const [],
       ),
       mentionRoles: $checkedConvert(
         'mention_roles',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
       ),
       webhookId: $checkedConvert('webhook_id', (v) => v as String?),
       editedTimestamp: $checkedConvert(

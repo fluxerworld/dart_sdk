@@ -89,13 +89,15 @@ class MessageResponseSchema {
   final bool mentionEveryone;
 
   /// Whether the message was sent as text-to-speech
+  @JsonKey(defaultValue: false)
   final bool tts;
 
   /// The users mentioned in the message
+  @JsonKey(defaultValue: [])
   final List<UserPartialResponse> mentions;
 
   /// The role IDs mentioned in the message
-  @JsonKey(name: 'mention_roles')
+  @JsonKey(name: 'mention_roles', defaultValue: [])
   final List<String> mentionRoles;
 
   /// Channels mentioned in the message that are visible to @everyone
