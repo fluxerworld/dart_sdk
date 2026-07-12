@@ -33,7 +33,7 @@ class UserPrivateResponse {
     required this.email,
     required this.unreadGiftInventoryCount,
     required this.hasUnreadGiftInventory,
-    required this.hasVerifiedPhone,
+    this.hasVerifiedPhone,
     required this.bio,
     required this.id,
     required this.accentColor,
@@ -51,17 +51,17 @@ class UserPrivateResponse {
     required this.premiumBillingCycle,
     required this.premiumLifetimeSequence,
     required this.premiumGraceEndsAt,
-    required this.premiumDiscriminator,
+    this.premiumDiscriminator,
     required this.premiumBadgeHidden,
     required this.privacyAgreedAt,
     required this.premiumBadgeTimestampHidden,
     required this.premiumBadgeSequenceHidden,
     required this.premiumPurchaseDisabled,
     required this.premiumEnabledOverride,
-    required this.premiumPerksDisabled,
+    this.premiumPerksDisabled,
     required this.lastVoiceActivitySharingChangeAt,
     required this.passwordLastChangedAt,
-    required this.requiredActions,
+    this.requiredActions,
     this.mentionFlags,
     this.authenticatorTypes,
     this.timezonePrivacyFlags,
@@ -135,7 +135,7 @@ class UserPrivateResponse {
 
   /// Whether this account has completed phone verification
   @JsonKey(name: 'has_verified_phone')
-  final bool hasVerifiedPhone;
+  final bool? hasVerifiedPhone;
 
   /// The user biography text
   @JsonKey(includeIfNull: true)
@@ -204,7 +204,7 @@ class UserPrivateResponse {
 
   /// Whether the user selected a premium-only discriminator that will be rerolled when non-lifetime premium access ends
   @JsonKey(name: 'premium_discriminator')
-  final bool premiumDiscriminator;
+  final bool? premiumDiscriminator;
 
   /// Whether the premium badge is hidden on the profile
   @JsonKey(name: 'premium_badge_hidden')
@@ -232,7 +232,7 @@ class UserPrivateResponse {
 
   /// Whether premium perks are temporarily disabled for this account
   @JsonKey(name: 'premium_perks_disabled')
-  final bool premiumPerksDisabled;
+  final bool? premiumPerksDisabled;
 
   /// Whether this account is forced through the inbound (expensive-destination) phone verification flow regardless of prefix, for debugging
   @JsonKey(includeIfNull: false, name: 'force_inbound_phone_verification')
@@ -248,7 +248,7 @@ class UserPrivateResponse {
 
   /// Actions the user must complete before full access
   @JsonKey(name: 'required_actions')
-  final List<String> requiredActions;
+  final List<String>? requiredActions;
 
   /// Whether the user is allowed to view NSFW content
   @JsonKey(name: 'nsfw_allowed')

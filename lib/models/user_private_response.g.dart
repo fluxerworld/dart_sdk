@@ -51,7 +51,10 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
         'has_unread_gift_inventory',
         (v) => v as bool,
       ),
-      hasVerifiedPhone: $checkedConvert('has_verified_phone', (v) => v as bool),
+      hasVerifiedPhone: $checkedConvert(
+        'has_verified_phone',
+        (v) => v as bool?,
+      ),
       bio: $checkedConvert('bio', (v) => v as String?),
       id: $checkedConvert('id', (v) => v as String),
       accentColor: $checkedConvert('accent_color', (v) => (v as num?)?.toInt()),
@@ -89,7 +92,7 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
       ),
       premiumDiscriminator: $checkedConvert(
         'premium_discriminator',
-        (v) => v as bool,
+        (v) => v as bool?,
       ),
       premiumBadgeHidden: $checkedConvert(
         'premium_badge_hidden',
@@ -117,7 +120,7 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
       ),
       premiumPerksDisabled: $checkedConvert(
         'premium_perks_disabled',
-        (v) => v as bool,
+        (v) => v as bool?,
       ),
       lastVoiceActivitySharingChangeAt: $checkedConvert(
         'last_voice_activity_sharing_change_at',
@@ -129,7 +132,7 @@ UserPrivateResponse _$UserPrivateResponseFromJson(
       ),
       requiredActions: $checkedConvert(
         'required_actions',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
       ),
       mentionFlags: $checkedConvert(
         'mention_flags',
