@@ -13,7 +13,7 @@ class AuthTokenWithUserIdResponse {
   const AuthTokenWithUserIdResponse({
     required this.token,
     required this.userId,
-    required this.user,
+    this.user,
   });
 
   factory AuthTokenWithUserIdResponse.fromJson(Map<String, Object?> json) =>
@@ -26,8 +26,10 @@ class AuthTokenWithUserIdResponse {
   @JsonKey(name: 'user_id')
   final String userId;
 
-  /// Partial user data for the authenticated account
-  final AuthTokenWithUserIdResponseUser user;
+  /// Partial user data for the authenticated account. The login, TOTP-MFA and
+  /// register endpoints return only `{token, user_id}` (no `user`), so this is
+  /// nullable — requiring it made the SDK throw on those valid 200 responses.
+  final AuthTokenWithUserIdResponseUser? user;
 
   Map<String, Object?> toJson() => _$AuthTokenWithUserIdResponseToJson(this);
 }
