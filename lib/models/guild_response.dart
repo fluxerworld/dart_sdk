@@ -26,7 +26,7 @@ part 'guild_response.g.dart';
 @JsonSerializable()
 class GuildResponse {
   const GuildResponse({
-    required this.contentWarningLevel,
+    this.contentWarningLevel,
     required this.name,
     required this.afkTimeout,
     required this.splashCardAlignment,
@@ -163,11 +163,12 @@ class GuildResponse {
   final NsfwLevel nsfwLevel;
 
   /// Whether the guild is marked as adult (18+) content
+  @JsonKey(defaultValue: false)
   final bool nsfw;
 
   /// Whether the guild displays a content warning before entering
   @JsonKey(name: 'content_warning_level')
-  final ContentWarningLevel contentWarningLevel;
+  final ContentWarningLevel? contentWarningLevel;
 
   /// Custom guild-wide content warning text; null falls back to a localized default
   @JsonKey(includeIfNull: false, name: 'content_warning_text')

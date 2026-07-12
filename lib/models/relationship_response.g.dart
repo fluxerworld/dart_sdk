@@ -20,16 +20,18 @@ RelationshipResponse _$RelationshipResponseFromJson(
       ),
       user: $checkedConvert(
         'user',
-        (v) => UserPartialResponse.fromJson(v as Map<String, dynamic>),
+        (v) => v == null
+            ? null
+            : UserPartialResponse.fromJson(v as Map<String, dynamic>),
       ),
       nickname: $checkedConvert('nickname', (v) => v as String?),
       shareVoiceActivity: $checkedConvert(
         'share_voice_activity',
-        (v) => v as bool,
+        (v) => v as bool? ?? false,
       ),
       friendSharesVoiceActivity: $checkedConvert(
         'friend_shares_voice_activity',
-        (v) => v as bool,
+        (v) => v as bool? ?? false,
       ),
       since: $checkedConvert(
         'since',
@@ -49,7 +51,7 @@ Map<String, dynamic> _$RelationshipResponseToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'type': instance.type,
-  'user': instance.user,
+  'user': ?instance.user,
   'since': ?instance.since?.toIso8601String(),
   'nickname': instance.nickname,
   'share_voice_activity': instance.shareVoiceActivity,

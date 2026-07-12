@@ -32,9 +32,15 @@ class UserPartialResponse {
   final String id;
 
   /// The username of the user, not unique across the platform
+  ///
+  /// Defaults to an empty string: the fluxer.world server sends id-only user
+  /// references (e.g. `{"id": "..."}`) in READY guild members and
+  /// relationships, backing the full user by the top-level `users` array.
+  @JsonKey(defaultValue: '')
   final String username;
 
   /// The four-digit discriminator tag of the user
+  @JsonKey(defaultValue: '0')
   final String discriminator;
 
   /// The display name of the user, if set
@@ -56,6 +62,7 @@ class UserPartialResponse {
   /// Whether the user is an official system user
   @JsonKey(includeIfNull: false)
   final bool? system;
+  @JsonKey(defaultValue: 0)
   final PublicUserFlags flags;
 
   /// The user's account-wide reply mention preference

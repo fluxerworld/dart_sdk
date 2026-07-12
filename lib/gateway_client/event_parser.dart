@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:fluxer_dart/models/channel_response.dart';
 import 'package:fluxer_dart/models/guild_emoji_response.dart';
 import 'package:fluxer_dart/models/guild_member_response.dart';
@@ -328,7 +330,17 @@ class EventParser {
 
         _ => UnknownGatewayEvent(eventType: eventType, data: data),
       };
-    } catch (_) {
+    } catch (e, st) {
+      // A parse failure here silently downgrades the event to "unknown". For
+      // READY that means onReady/setReady never fires and the app hangs on the
+      // boot screen, so surface it instead of failing invisibly. Usually a
+      // server field the SDK marks required but the instance omits/sends null.
+      developer.log(
+        'Failed to parse gateway event "$eventType" — downgraded to unknown',
+        name: 'fluxer.gateway',
+        error: e,
+        stackTrace: st,
+      );
       return UnknownGatewayEvent(eventType: eventType, data: data);
     }
   }
@@ -354,7 +366,13 @@ class EventParser {
         ),
         _ => null,
       };
-    } catch (_) {
+    } catch (e, st) {
+      developer.log(
+        'Failed to parse list gateway event "$eventType"',
+        name: 'fluxer.gateway',
+        error: e,
+        stackTrace: st,
+      );
       return null;
     }
   }
@@ -393,10 +411,10 @@ class EventParser {
 
     final userGuildSettingsRaw = data['user_guild_settings'] as List<dynamic>?;
     final userGuildSettings = userGuildSettingsRaw != null
-        ? userGuildSettingsRaw
-              .cast<Map<String, dynamic>>()
-              .map((e) => UserGuildSettingsResponse.fromJson(e))
-              .toList()
+        ? _parseListSafe(
+            userGuildSettingsRaw,
+            (e) => UserGuildSettingsResponse.fromJson(e as Map<String, dynamic>),
+          )
         : null;
 
     final notesRaw = data['notes'] as Map<String, dynamic>?;

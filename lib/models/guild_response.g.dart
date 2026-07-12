@@ -15,7 +15,9 @@ GuildResponse _$GuildResponseFromJson(
     final val = GuildResponse(
       contentWarningLevel: $checkedConvert(
         'content_warning_level',
-        (v) => ContentWarningLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : ContentWarningLevel.fromJson((v as num).toInt()),
       ),
       name: $checkedConvert('name', (v) => v as String),
       afkTimeout: $checkedConvert('afk_timeout', (v) => (v as num).toInt()),
@@ -59,7 +61,7 @@ GuildResponse _$GuildResponseFromJson(
         'explicit_content_filter',
         (v) => GuildExplicitContentFilter.fromJson((v as num).toInt()),
       ),
-      nsfw: $checkedConvert('nsfw', (v) => v as bool),
+      nsfw: $checkedConvert('nsfw', (v) => v as bool? ?? false),
       systemChannelId: $checkedConvert(
         'system_channel_id',
         (v) => v as String?,
@@ -197,7 +199,7 @@ Map<String, dynamic> _$GuildResponseToJson(
   'mfa_level': instance.mfaLevel,
   'nsfw_level': instance.nsfwLevel,
   'nsfw': instance.nsfw,
-  'content_warning_level': instance.contentWarningLevel,
+  'content_warning_level': ?instance.contentWarningLevel,
   'content_warning_text': ?instance.contentWarningText,
   'explicit_content_filter': instance.explicitContentFilter,
   'default_message_notifications': instance.defaultMessageNotifications,

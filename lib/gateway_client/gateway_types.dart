@@ -399,11 +399,10 @@ class GuildCreateData {
       presences:
           (json['presences'] as List<dynamic>?)?.cast<Map<String, dynamic>>() ??
           [],
-      voiceStates:
-          (json['voice_states'] as List<dynamic>?)
-              ?.map((e) => VoiceState.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
+      voiceStates: _parseListSafe(
+        json['voice_states'],
+        (e) => VoiceState.fromJson(e as Map<String, dynamic>),
+      ),
       emojis: _parseListSafe(
         json['emojis'],
         (e) => GuildEmojiResponse.fromJson(e as Map<String, Object?>),
