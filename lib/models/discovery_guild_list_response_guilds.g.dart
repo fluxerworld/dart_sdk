@@ -18,7 +18,8 @@ DiscoveryGuildListResponseGuilds _$DiscoveryGuildListResponseGuildsFromJson(
       categoryType: $checkedConvert('category_type', (v) => v as num),
       customTags: $checkedConvert(
         'custom_tags',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+        (v) =>
+            (v as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
       ),
       memberCount: $checkedConvert('member_count', (v) => v as num),
       onlineCount: $checkedConvert('online_count', (v) => v as num),

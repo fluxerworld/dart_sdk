@@ -49,7 +49,7 @@ class DiscoveryGuildListResponseGuilds {
   final String? primaryLanguage;
 
   /// Custom discovery tags
-  @JsonKey(name: 'custom_tags')
+  @JsonKey(name: 'custom_tags', defaultValue: [])
   final List<String> customTags;
 
   /// Approximate member count
