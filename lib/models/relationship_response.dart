@@ -33,6 +33,7 @@ class RelationshipResponse {
   /// The related user. Absent on the fluxer.world server, which sends only the
   /// relationship [id] (equal to the target user id) and backs the full user by
   /// the READY `users` array.
+  @JsonKey(includeIfNull: false)
   final UserPartialResponse? user;
 
   /// ISO8601 timestamp of when the relationship was established

@@ -28,6 +28,7 @@ class GuildEmojiResponse {
   final bool animated;
 
   /// Whether this emoji is classified as NSFW
+  @JsonKey(includeIfNull: false)
   final bool? nsfw;
 
   Map<String, Object?> toJson() => _$GuildEmojiResponseToJson(this);

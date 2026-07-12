@@ -167,7 +167,7 @@ class GuildResponse {
   final bool nsfw;
 
   /// Whether the guild displays a content warning before entering
-  @JsonKey(name: 'content_warning_level')
+  @JsonKey(name: 'content_warning_level', includeIfNull: false)
   final ContentWarningLevel? contentWarningLevel;
 
   /// Custom guild-wide content warning text; null falls back to a localized default
