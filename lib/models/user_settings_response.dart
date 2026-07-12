@@ -24,8 +24,8 @@ part 'user_settings_response.g.dart';
 class UserSettingsResponse {
   const UserSettingsResponse({
     required this.renderEmbeds,
-    required this.profilePrivacy,
-    required this.syncedPreferences,
+    this.profilePrivacy,
+    this.syncedPreferences,
     required this.theme,
     required this.locale,
     required this.restrictedGuilds,
@@ -47,16 +47,16 @@ class UserSettingsResponse {
     required this.guildFolders,
     required this.customStatus,
     required this.afkTimeout,
-    required this.defaultShareVoiceActivity,
+    this.defaultShareVoiceActivity,
     required this.developerMode,
     required this.trustedDomains,
     required this.defaultHideMutedChannels,
-    required this.sensitiveContentFriendDmFilter,
-    required this.sensitiveContentNonFriendDmFilter,
-    required this.sensitiveContentGuildFilter,
-    required this.suppressUnprivilegedSelfMentions,
-    required this.suppressUnprivilegedSelfMentionsBypassUserIds,
-    required this.staffDmAccessUserIds,
+    this.sensitiveContentFriendDmFilter,
+    this.sensitiveContentNonFriendDmFilter,
+    this.sensitiveContentGuildFilter,
+    this.suppressUnprivilegedSelfMentions,
+    this.suppressUnprivilegedSelfMentionsBypassUserIds,
+    this.staffDmAccessUserIds,
     required this.timeFormat,
     this.statusResetsAt,
     this.statusResetsTo,
@@ -168,39 +168,39 @@ class UserSettingsResponse {
 
   /// Sensitive media filter level for DMs from friends
   @JsonKey(name: 'sensitive_content_friend_dm_filter')
-  final SensitiveMediaFilterLevel sensitiveContentFriendDmFilter;
+  final SensitiveMediaFilterLevel? sensitiveContentFriendDmFilter;
 
   /// Sensitive media filter level for DMs from non-friends
   @JsonKey(name: 'sensitive_content_non_friend_dm_filter')
-  final SensitiveMediaFilterLevel sensitiveContentNonFriendDmFilter;
+  final SensitiveMediaFilterLevel? sensitiveContentNonFriendDmFilter;
 
   /// Sensitive media filter level for community channels
   @JsonKey(name: 'sensitive_content_guild_filter')
-  final SensitiveMediaGuildFilterLevel sensitiveContentGuildFilter;
+  final SensitiveMediaGuildFilterLevel? sensitiveContentGuildFilter;
 
   /// Whether direct mentions and reply mentions from unprivileged users are suppressed
   @JsonKey(name: 'suppress_unprivileged_self_mentions')
-  final bool suppressUnprivilegedSelfMentions;
+  final bool? suppressUnprivilegedSelfMentions;
 
   /// User IDs that bypass self-mention suppression
   @JsonKey(name: 'suppress_unprivileged_self_mentions_bypass_user_ids')
-  final List<SnowflakeType> suppressUnprivilegedSelfMentionsBypassUserIds;
+  final List<SnowflakeType>? suppressUnprivilegedSelfMentionsBypassUserIds;
 
   /// User IDs with Staff DM Access enabled
   @JsonKey(name: 'staff_dm_access_user_ids')
-  final List<SnowflakeType> staffDmAccessUserIds;
+  final List<SnowflakeType>? staffDmAccessUserIds;
 
   /// Account-wide client preferences as a base64-encoded protobuf snapshot. Empty string when nothing has been synced yet.
   @JsonKey(name: 'synced_preferences')
-  final String syncedPreferences;
+  final String? syncedPreferences;
 
   /// Controls who sees the full profile: all guild members, only small-guild members, or only friends
   @JsonKey(name: 'profile_privacy')
-  final ProfilePrivacyLevel profilePrivacy;
+  final ProfilePrivacyLevel? profilePrivacy;
 
   /// Default value of share_voice_activity applied to newly accepted friend relationships. Read-only here; mutated via PUT /users/@me/settings/voice-activity-sharing.
   @JsonKey(name: 'default_share_voice_activity')
-  final bool defaultShareVoiceActivity;
+  final bool? defaultShareVoiceActivity;
 
   Map<String, Object?> toJson() => _$UserSettingsResponseToJson(this);
 }

@@ -16,11 +16,11 @@ UserSettingsResponse _$UserSettingsResponseFromJson(
       renderEmbeds: $checkedConvert('render_embeds', (v) => v as bool),
       profilePrivacy: $checkedConvert(
         'profile_privacy',
-        (v) => ProfilePrivacyLevel.fromJson((v as num).toInt()),
+        (v) => v == null ? null : ProfilePrivacyLevel.fromJson((v as num).toInt()),
       ),
       syncedPreferences: $checkedConvert(
         'synced_preferences',
-        (v) => v as String,
+        (v) => v as String?,
       ),
       theme: $checkedConvert('theme', (v) => v as String),
       locale: $checkedConvert('locale', (v) => Locale.fromJson(v as String)),
@@ -92,7 +92,7 @@ UserSettingsResponse _$UserSettingsResponseFromJson(
       afkTimeout: $checkedConvert('afk_timeout', (v) => (v as num).toInt()),
       defaultShareVoiceActivity: $checkedConvert(
         'default_share_voice_activity',
-        (v) => v as bool,
+        (v) => v as bool?,
       ),
       developerMode: $checkedConvert('developer_mode', (v) => v as bool),
       trustedDomains: $checkedConvert(
@@ -105,27 +105,33 @@ UserSettingsResponse _$UserSettingsResponseFromJson(
       ),
       sensitiveContentFriendDmFilter: $checkedConvert(
         'sensitive_content_friend_dm_filter',
-        (v) => SensitiveMediaFilterLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : SensitiveMediaFilterLevel.fromJson((v as num).toInt()),
       ),
       sensitiveContentNonFriendDmFilter: $checkedConvert(
         'sensitive_content_non_friend_dm_filter',
-        (v) => SensitiveMediaFilterLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : SensitiveMediaFilterLevel.fromJson((v as num).toInt()),
       ),
       sensitiveContentGuildFilter: $checkedConvert(
         'sensitive_content_guild_filter',
-        (v) => SensitiveMediaGuildFilterLevel.fromJson((v as num).toInt()),
+        (v) => v == null
+            ? null
+            : SensitiveMediaGuildFilterLevel.fromJson((v as num).toInt()),
       ),
       suppressUnprivilegedSelfMentions: $checkedConvert(
         'suppress_unprivileged_self_mentions',
-        (v) => v as bool,
+        (v) => v as bool?,
       ),
       suppressUnprivilegedSelfMentionsBypassUserIds: $checkedConvert(
         'suppress_unprivileged_self_mentions_bypass_user_ids',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
       ),
       staffDmAccessUserIds: $checkedConvert(
         'staff_dm_access_user_ids',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+        (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
       ),
       timeFormat: $checkedConvert(
         'time_format',
