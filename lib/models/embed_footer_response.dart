@@ -9,7 +9,7 @@ part 'embed_footer_response.g.dart';
 @JsonSerializable()
 class EmbedFooterResponse {
   const EmbedFooterResponse({
-    required this.text,
+    this.text,
     this.iconUrl,
     this.proxyIconUrl,
   });
@@ -18,7 +18,8 @@ class EmbedFooterResponse {
       _$EmbedFooterResponseFromJson(json);
 
   /// The footer text
-  final String text;
+  @JsonKey(includeIfNull: false)
+  final String? text;
 
   /// The URL of the footer icon
   @JsonKey(includeIfNull: false, name: 'icon_url')

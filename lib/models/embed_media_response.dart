@@ -12,7 +12,7 @@ part 'embed_media_response.g.dart';
 @JsonSerializable()
 class EmbedMediaResponse {
   const EmbedMediaResponse({
-    required this.url,
+    this.url,
     required this.flags,
     this.proxyUrl,
     this.contentType,
@@ -28,7 +28,8 @@ class EmbedMediaResponse {
       _$EmbedMediaResponseFromJson(json);
 
   /// The URL of the media
-  final String url;
+  @JsonKey(includeIfNull: false)
+  final String? url;
 
   /// The proxied URL of the media
   @JsonKey(includeIfNull: false, name: 'proxy_url')

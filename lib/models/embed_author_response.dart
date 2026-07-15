@@ -9,7 +9,7 @@ part 'embed_author_response.g.dart';
 @JsonSerializable()
 class EmbedAuthorResponse {
   const EmbedAuthorResponse({
-    required this.name,
+    this.name,
     this.url,
     this.iconUrl,
     this.proxyIconUrl,
@@ -19,7 +19,8 @@ class EmbedAuthorResponse {
       _$EmbedAuthorResponseFromJson(json);
 
   /// The name of the author
-  final String name;
+  @JsonKey(includeIfNull: false)
+  final String? name;
 
   /// The URL of the author
   @JsonKey(includeIfNull: false)

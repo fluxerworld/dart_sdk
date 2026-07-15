@@ -12,7 +12,7 @@ EmbedFooterResponse _$EmbedFooterResponseFromJson(Map<String, dynamic> json) =>
       json,
       ($checkedConvert) {
         final val = EmbedFooterResponse(
-          text: $checkedConvert('text', (v) => v as String),
+          text: $checkedConvert('text', (v) => v as String?),
           iconUrl: $checkedConvert('icon_url', (v) => v as String?),
           proxyIconUrl: $checkedConvert('proxy_icon_url', (v) => v as String?),
         );
@@ -27,7 +27,7 @@ EmbedFooterResponse _$EmbedFooterResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$EmbedFooterResponseToJson(
   EmbedFooterResponse instance,
 ) => <String, dynamic>{
-  'text': instance.text,
+  'text': ?instance.text,
   'icon_url': ?instance.iconUrl,
   'proxy_icon_url': ?instance.proxyIconUrl,
 };

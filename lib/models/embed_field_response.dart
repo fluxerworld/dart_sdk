@@ -9,8 +9,8 @@ part 'embed_field_response.g.dart';
 @JsonSerializable()
 class EmbedFieldResponse {
   const EmbedFieldResponse({
-    required this.name,
-    required this.value,
+    this.name,
+    this.value,
     required this.inline,
   });
 
@@ -18,10 +18,12 @@ class EmbedFieldResponse {
       _$EmbedFieldResponseFromJson(json);
 
   /// The name of the field
-  final String name;
+  @JsonKey(includeIfNull: false)
+  final String? name;
 
   /// The value of the field
-  final String value;
+  @JsonKey(includeIfNull: false)
+  final String? value;
 
   /// Whether the field should be displayed inline
   final bool inline;
